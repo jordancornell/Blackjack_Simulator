@@ -27,13 +27,17 @@ The card counting strategy employed here is a very simple one, and works as foll
 
 The "count" of the deck is tabulated as follows: every low card observed equates to +1 on the "total count" of the deck, and every high card equates to a -1. The total count is then divided by the number of decks remaining in the shoe in order to approximate the "true count". When the true count is high(i.e. greater than ~4), this represents a distinct advantage to the player. A player who is counting cards would likely seek to increase their bet substantially when this is the case, and keep a minimum bet (or even sit out) when the count goes very low. The true count tends to be much more indicative towards the end of a deck, before dropping back to 0 after reshuffling.
 
-For the data generated below, the following methodology was used: Minimum bet is applied in all cases where true count is less than 2. When the true count exceeds 2, the bet is doubled, when the true count exceeds 3, the bet is quadrupled, and when the true count exceeds 4, a bet of 8 times the original is applied.
+For the data generated below, the following methodology was used: Minimum bet is applied in all cases where true count is less than 2. When the true count exceeds 2, the bet is doubled, when the true count exceeds 3, the bet is quadrupled, and when the true count exceeds 4, a bet of 8 times the original is applied. A larger bet spread could indeed improve the expected returns but we must consider the limitations of a casino's maximum bet, as well as the attention drawn from the casino staff. 
 
-and the opportunity certainly exists to enhance this simulation with more elaborate methods. 
+That said, with this simple model where the player keeps track of the true count and adjusts their bet accodingly (up to 8x the minimum), the expected return jumps notably to **2.05%** (negative 2% house edge for the casino)
 
 ![Expected Return Counting](/Plots/Expected_Return_Counting.png)
 
+These expected return plots serve to show the merit of a simple card counting strategy on top of already optimal play, and how in the long run, a player can reasonably expect to make money against the casino. An important consideration however, is the large variability in the gameplay and returns, which we will dive deeper into in the Statistical analysis section.
+
 ### Project Structure
+
+This section serves as a quick overview of the structure of the project, the interaction of the classes and methods, and some key design choices that were made along the way. The majority of the project, including the design of the game and the batched simulations, were implemented in Java with an object oriented approach, whereas the data visualization portion was done with Python.
 
 **src/ folder in the project structure contains all java classes used to build the simulation:**
 
@@ -57,10 +61,18 @@ and the opportunity certainly exists to enhance this simulation with more elabor
 **Generate_Plots.py** - Python script using numpy and matplotlib to analyze and plot data from large output files. This script was used to generate all plots shown in this document
 
 
-
-Testing
-
 ### Statistical Analysis
+
+This section serves to explore some further detail on the results of the simulations. In the summary section, we looked at the expected payout for the baseline optimal strategy case and the card counting case, as it converged over millions of iterations. To make this analysis more practical however, it is important to look at more reasonable numbers of games and consider the expected returns and variability. For this purpose, we will consider a "session" of 300 games, which is approximately the number of games a player might expect to complete when sitting down at a blackjack table for 4 hours. 20000 iterations of 300 game "sessions" were performed for both the non-counting and counting cases to evaluate the returns in a more practical context.
+
+
+The following cases are considered over the course 
+
+Baseline: This is the simple case where the player employs optimal strategy but does not count cards. The bet is held constant at $1 (although this amount is arbitrary and the results could be scaled to represent any bet size) 
+
+Baseline with Double Bet: Same as baseline case, but bet is now $2 for the purpose of better matching the distribution of the card counting case.
+
+Card Counting Case: Optimal strategy, bet varies from 1-8 depending on the true count of the deck.
 
 |Baseline|Baseline with Double Bet|Counting|
 |--------|------------------------|--------|
