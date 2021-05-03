@@ -7,7 +7,7 @@ The purpose of this project was to develop a simulation of a blackjack game that
 The simulation was developed with some of the following considerations:
 1. Atlantic City Rules - Casino blackjack rules tend to vary across the world, but Atlantic City casinos have some of the most favorable rules for the players. Thus, a similar set of rules was selected to generate the data shown below. Additionally, this rule set has been well researched, so optimal strategies are well documented, and the model can be validated against other calculations.
 2. Flexibility - The user should be able to tweak elements of the rules, game setup, or strategy to assess the impact on expected payout.
-3. Scalability - We ust be able to easily perform large series of simulations, as we determine the casino/player edge by analyzing the average payouts of millions of simulated games.
+3. Scalability - We must be able to easily perform large series of simulations, as we determine the casino/player edge by analyzing the average payouts of millions of simulated games.
 
 The simulation was implemented with the following basic rules (similar to many Atlantic City casinos):
 * Blackjack payout is 3:2
