@@ -64,9 +64,7 @@ Testing
 
 
 
-![Monte Carlo Baseline](/Plots/Monte_Carlo_Baseline.png)
-
-![Monte Carlo Baseline Hist](/Plots/Monte_Carlo_Baseline_Histogram.png)
+![Monte Carlo Baseline](/Plots/Monte_Carlo_Baseline.png) ![Monte Carlo Baseline Hist](/Plots/Monte_Carlo_Baseline_Histogram.png)
 
 ![Monte Carlo Baseline_Double](/Plots/Monte_Carlo_Baseline_Double_Bet.png)
 
