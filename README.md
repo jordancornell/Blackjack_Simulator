@@ -1,5 +1,21 @@
 # Blackjack Simulator
 
+The purpose of project was to develop a simulation of a blackjack game that could be used to evaluate statistical metrics regarding the odds/edge of the game for a given set of rules. This simulation can evaluate the individual and/or cumulative outcomes of large numbers of games to draw conclusions on strategy choices and expected payouts. We begin by examining a player playing with optimal strategy, and then evaluate the efficacy of a simple card counting strategy. 
+
+
+The simulation was developed with some of the following considerations:
+
+Atlantic City Rules - Casino blackjack rules tend to vary across the world, but Atlantic City casinos have some of the most favorable rules for the players. Thus, a similar set of rules was selected to generate the data shown below. Additionally, this rule set has been well researched, so optimal strategies are well documented, and the model could be validated against other's clculations.
+
+The basic rules are as follows:
+Blackjack payout is 3:2
+Player can Double Down on any initial hand
+
+Optimal Strategy
+
+Flexibility
+Scalability is an important consideration, as we determine the casino/player edge over via the averge payouts of millions of simulated games
+
 ![Expected Return Baseline](/Plots/Expected_Return_Baseline.png)
 
 ![Expected Return Counting](/Plots/Expected_Return_Counting.png)
