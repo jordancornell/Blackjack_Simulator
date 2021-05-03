@@ -68,17 +68,19 @@ This section serves to explore some further detail on the results of the simulat
 
 The following cases are considered over the course 
 
-Baseline: This is the simple case where the player employs optimal strategy but does not count cards. The bet is held constant at $1 (although this amount is arbitrary and the results could be scaled to represent any bet size) 
+* Baseline: This is the simple case where the player employs optimal strategy but does not count cards. The bet is held constant at $1 (although this amount is arbitrary and the results could be scaled to represent any bet size) 
 
-Baseline with Double Bet: Same as baseline case, but bet is now $2 for the purpose of better matching the distribution of the card counting case.
+* Baseline with Double Bet: Same as baseline case, but bet is now $2 for the purpose of better matching the distribution of the card counting case.
 
-Card Counting Case: Optimal strategy, bet varies from 1-8 depending on the true count of the deck.
+* Card Counting Case: Optimal strategy, bet varies from 1-8 depending on the true count of the deck.
+
+The figues below show the distributions of the average payout of these 300 hand sessions. The means are as we would expect, the same as the ones calculated above, but the standard deviations should be noted. Even though in the card counting case we can expect an average payout per hand of +2% of the bet,the standard deviation of 15.5% expresses extrmely large variability, which is something the player should be very aware of.
 
 |Baseline|Baseline with Double Bet|Counting|
 |--------|------------------------|--------|
 |![Hist Session Baseline](/Plots/Histogram_Session_Baseline.png)|![Hist Session Baseline Double](/Plots/Histogram_Session_Baseline_Double_Bet.png)|![Hist Session Counting](/Plots/Histogram_Session_Counting.png)|
 
-
+How does this variability propagate through a session at the blackjack table? The previous figures examined the average return of the session, but the following ones will look at the cumulative return. The figures on the left show the total payout as the number of games increases, in this case for 2000 iterations of the 300 game session (# iterations decreased to make the plots easier to observe). The figures on the right show the distribution of total payouts at the end of each session. Again, the standard bet amounts are arbitrary (and lower than most casino minimums) and can be scaled as necessary. Similarly, the takeaway of these plots should be the large variability observed in all cases, even when the card counting drives the expected return positive.
 
 
 | Monte Carlo Plots - Total Payout vs # Games	| Histograms - Total Payout at end of session					 |
@@ -87,10 +89,11 @@ Card Counting Case: Optimal strategy, bet varies from 1-8 depending on the true 
 |![Monte Carlo Baseline_Double](/Plots/Monte_Carlo_Baseline_Double_Bet.png)|![Monte Carlo Baseline Double Hist](/Plots/Monte_Carlo_Baseline_Double_Bet_Histogram.png)|
 |![Monte Carlo Counting](/Plots/Monte_Carlo_Counting.png)|![Monte Carlo Counting Hist](/Plots/Monte_Carlo_Counting_Histogram.png)|
 
-
+Lastly, the following plots show some quick analysis on the deck penetration and the true counts observed. This first plot shows the true count as a function of the number of decks remaining in the shoe. Note how the magnitude of the true count rises sharply as the end of the deck is approached. For this reason, games with fewer decks are advantageous to the player, as well as games where a larger percent of the deck is dealt before a reshuffle, as both cases allow for more decisive information on true count to be availible for a larger percentage of hands.
 
 ![True Count vs Decks Remaining](/Plots/True_Count_vs_Decks_Remaining.png)
 
-![True Count Distributions](/Plots/True_Count_Distributions.png)
+Similarly, this last figure shows the distribution of true counts at a variety of slices for the 6 deck case. Note how as the percentage of cards dealt increases, the distribution widens and ultimately separates into two distinct nodes. As we approach the end of the deck, there is a much greater likelihood of a largely positive true count, which is very actionable information for the the card counting player.
 
+![True Count Distributions](/Plots/True_Count_Distributions.png)
 
