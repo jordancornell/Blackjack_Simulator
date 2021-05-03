@@ -99,30 +99,19 @@ public class BlackjackPlayer {
 	}
 	
 	public void setBet(double trueCount) {
-		//System.out.println(trueCount);
+		//Set appropriate bet amount based on true count
 		if (trueCount > 4) {
 			bet = 8;
 		}
 		else if (trueCount > 3) {
 			bet = 4;
 		}
-		//else if (trueCount > 4) {
-		//	bet = 8;
-		//}
 		else if (trueCount > 2) {
 			bet = 2;
 		}
-		//else if (trueCount > 2) {
-		//	bet = 2;
-		//}
-		//else if (trueCount > -1) {
-		//	bet = 1;
-		//}
 		else {
 			bet = 1;
 		}
-		//System.out.println(bet);
-		
 	}
 	
 	public double getBet() {
