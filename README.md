@@ -2,28 +2,34 @@
 
 ### Summary
 
-The purpose of project was to develop a simulation of a blackjack game that could be used to evaluate statistical metrics regarding the odds/edge of the game for a given set of rules. This simulation can evaluate the individual and/or cumulative outcomes of large numbers of games to draw conclusions on strategy choices and expected payouts. We begin by examining a player playing with optimal strategy, and then evaluate the efficacy of a simple card counting strategy. 
+The purpose of this project was to develop a simulation of a blackjack game that could be used to evaluate statistical metrics regarding the odds/edge of the game for a given set of rules. This simulation can evaluate the individual and/or cumulative outcomes of large numbers of games to draw conclusions on strategy choices and expected payouts. We begin by examining a player playing with optimal strategy, and then evaluate the efficacy of a simple card counting strategy. 
 
 The simulation was developed with some of the following considerations:
-
-Atlantic City Rules - Casino blackjack rules tend to vary across the world, but Atlantic City casinos have some of the most favorable rules for the players. Thus, a similar set of rules was selected to generate the data shown below. Additionally, this rule set has been well researched, so optimal strategies are well documented, and the model could be validated against other's clculations.
-
-Flexibility is an important consideration, the user should be able to tweak elements of the rules, game setup, or strategy to assess the impact on expected payout.
-Scalability is also an important consideration, as we determine the casino/player edge over via the averge payouts of millions of simulated games
+1. Atlantic City Rules - Casino blackjack rules tend to vary across the world, but Atlantic City casinos have some of the most favorable rules for the players. Thus, a similar set of rules was selected to generate the data shown below. Additionally, this rule set has been well researched, so optimal strategies are well documented, and the model can be validated against other calculations.
+2. Flexibility - The user should be able to tweak elements of the rules, game setup, or strategy to assess the impact on expected payout.
+3. Scalability - Must be able to easily perform large series of simulations, as we determine the casino/player edge by analyzing the average payouts of millions of simulated games
 
 The simulation was implemented with the following basic rules (similar to many Atlantic City casinos)
-Blackjack payout is 3:2
-Player can split pairs (up to a total of 4 hands)
-Player can Double Down on any hand of 2 (including after a split)
-Aces can be split only once, and only 1 additional card dealt to each hand
+* Blackjack payout is 3:2
+* Player can split pairs (up to a total of 4 hands)
+* Player can Double Down on any hand of 2 (including after a split)
+* Aces can be split only once, and only 1 additional card dealt to each hand
 
-As for the number of decks and frequency of reshuffling, a total of six decks were used and they were reshuffled whenever 75% of the cards had been dealt. The deck penatration (percentage of the deck dealt before reshuffling) is a very important metric for card counters, and a higher number is more desirable.
+As for the number of decks and frequency of reshuffling, a total of six decks were used and they were reshuffled whenever 75% of the cards had been dealt. The deck penetration (percentage of the deck dealt before reshuffling) is a very important metric for card counters, and a higher number is more desirable.
 
 Prior to even considering the possibility of counting cards, the "player" is designed to play with optimal strategy, choosing the statistically best move, given the information available (their cards, and the dealer's visible card) and the legal moves (dictated by the rule set). A large batch of games was performed with the selected rules and optimal strategy, and the average return was evaluated until convergence. This configuration yielded a house edge of **0.43%**
 
 ![Expected Return Baseline](/Plots/Expected_Return_Baseline.png)
 
-This is 
+This house edge of **0.43%** is about as good as a player would be able to find in a casino, and many casinos in fact are much less advantageous to the player. Casinos can increase their house edge by decreasing the Blackjack payout, limiting a player's options in regards to splits and doubles, altering the deck size and shuffle frequency, among other rule changes. But, for the purpose of this exploration, we will stick with the Atlantic City like rule set defined above. If a player is playing optimally given the information available to them (their cards and the dealer's card), they can expect to see this very small house edge of **0.43%**. Thus, even a very small increase in performance should push the player over the threshold from losing money (on average), to making money. Lets start counting cards!
+
+The card counting strategy employed here is a very simple one, and works as follows: The player observes all cards on the table as they are dealt or become visible, noting in particular high cards (10s, Face Cards, and Aces) and low cards (2 - 6). When more low cards than high cards have been observed, the player can reason that high cards are more likely to be drawn in the coming hands, and vice versa. A higher concentration of high cards remaining in the deck equates to slightly better odds for the player(due largely to the increased likelihood of the dealer busting), and the player should increase their bet accordingly when this is the case. 
+
+The "count" of the deck is tabulated as follows: every low card observed equates to +1 on the "total count" of the deck, and every high card equates to a -1. The total count is then divided by the number of decks remaining in the shoe in order to approximate the "true count". When the true count is high(i.e. greater than ~4), this represents a distinct advantage to the player. A player who is counting cards would likely seek to increase their bet substantially when this is the case, and keep a minimum bet (or even sit out) when the count goes very low. The true count tends to be much more indicative towards the end of a deck, before dropping back to 0 after reshuffling.
+
+For the data generated below, the following methodology was used: Minimum bet is applied in all cases where true count is less than 2. When the true count exceeds 2, the bet is doubled, when the true count exceeds 3, the bet is quadrupled, and when the true count exceeds 4, a bet of 8 times the original is applied.
+
+and the opportunity certainly exists to enhance this simulation with more elaborate methods. 
 
 ![Expected Return Counting](/Plots/Expected_Return_Counting.png)
 
