@@ -29,7 +29,7 @@ This is
 
 ### Project Structure
 
-src/ folder in the project structure contains all java classes used to build the simulation:
+**src/ folder in the project structure contains all java classes used to build the simulation:**
 
 **Card.java** - Models a single playing card, has attributes suit and rank. Contains methods to retrieve suit and rank, and to print card value as text.
 
@@ -37,17 +37,22 @@ src/ folder in the project structure contains all java classes used to build the
 
 **Hand.java** - Models a "hand" of cards. Contains multiple card objects and the methods to interact with them. The dealer will have only a single hand, and thus can be modeled succinctly with a simple hand object, although since a player can have multiple hands through splits, we will later introduce the BlackjackPlayer class which offers increased functionality. Includes methods to add card to hand, calculate value, determine if hand is "soft" (i.e. hand contains Ace that is counting as 11), determine if hand has busted (gone over 21), check for pairs, and split itself into two hands.
 
-**BlackjackPlayer.java** - This class is used to model our main player in the blackjack game. This class wraps an additional layer of functionality around the Hand class, allowing a player to have up to the alowed 4 hands(depending on pairs and splitting), and providing mechanisms to perform moves and scoring. The BlackjackPlayer objects consists of a list of initialized at size 1 and increasing as necessary, and maintains an "active" index to determine which hand to interact with.
+**BlackjackPlayer.java** - This class is used to model our main player in the blackjack game. This class wraps an additional layer of functionality around the Hand class, allowing a player to have up to the alowed 4 hands(depending on pairs and splitting), and providing mechanisms to perform moves and scoring. The BlackjackPlayer objects consists of a list of initialized at size 1 and increasing as necessary, and maintains an "active" index to determine which hand to interact with. Includes methods to manipulate hands (add card, perform splits, etc), method to perform scoring and payout calculation relative to the dealer's hand, and method to determine bet size based on true count (when counting cards).
 
-**Player.java**
+**Player.java** - Player class contains static methods that hold logic of gameplay strategies. The playTurn() method contains an optimal strategy for the defined rule set, given the player's hand(s) and the dealer's visible card. It returns one of the following moves: Stand, Hit, Double or Split. This class also contains a simpler method to handle the dealer's moves. As is the rule of the game, the dealer must hit on any total less than 17, and stand at 17 or above.
 
-**Simulation.java**
+**Table.java** - Table class represents a blackjack table, at which one or many games can be played. When playing multiple games, cards are dealt from the same deck and the deck is reshuffed as needed. The Table is initialized with the desired game parameters and includes methods to start a new game, allow players and dealer to select their moves and bets, and perform scoring, determining player's payout for the game.
+	
+**Simulation.java** - Simulation class allows large batches of blackjack games to be performed in order to collect statistical metrics. The different methods allow for a variety of batch types to be performed (ex, large series of single games, series of sessions of certain number of games, etc.) These methods perform the series of games as specified, and write the output data to text files that are later used for plotting and analysis.
 
-**Table.java**
-
-**UnitTests.java**
+**UnitTests.java** - Unit tests for methods of Card, Deck, Hand and BlackjackPlayer classes.
 
 
+**Generate_Plots.py** - Python script using numpy and matplotlib to analyze and plot data from large output files. This script was used to generate all plots shown in this document
+
+
+
+Testing
 
 ### Statistical Analysis
 
