@@ -63,7 +63,7 @@ Testing
 
 
 
-| Monte Carlo						 | Histogram								 |
+| Monte Carlo Plots - Total Payout vs # Games	| Histograms - Total Payout at end of session					 |
 |--------------------------------------------------------|-----------------------------------------------------------------------|
 |![Monte Carlo Baseline](/Plots/Monte_Carlo_Baseline.png)|![Monte Carlo Baseline Hist](/Plots/Monte_Carlo_Baseline_Histogram.png)|
 |![Monte Carlo Baseline_Double](/Plots/Monte_Carlo_Baseline_Double_Bet.png)|![Monte Carlo Baseline Double Hist](/Plots/Monte_Carlo_Baseline_Double_Bet_Histogram.png)|
@@ -71,6 +71,8 @@ Testing
 
 
 
+![True Count vs Decks Remaining](/Plots/True_Count_vs_Decks_Remaining.png)
+
 ![True Count Distributions](/Plots/True_Count_Distributions.png)
 
-![True Count vs Decks Remaining](/Plots/True_Count_vs_Decks_Remaining.png)
+
